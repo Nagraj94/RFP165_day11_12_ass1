@@ -1,7 +1,5 @@
 package com.bridgelabz;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Account {
@@ -11,6 +9,10 @@ public class Account {
     int currentBalance;
     static Scanner sc = new Scanner(System.in);
     ArrayList<Stock> list = new ArrayList<>();
+
+    public int getBalanceAmount() {
+        return balanceAmount;
+    }
 
     public void addStock(){
         System.out.println("enter stock name");
@@ -65,17 +67,20 @@ public class Account {
                 else{
                     System.out.println("entered amount is greater than account balance");
                 }
-
             }
-    }
+
+        }
     public static void main(String[] args) {
         Account account = new Account();
+        StockAccount stockAccount = new StockAccount();
         while (true){
             System.out.println("************************************************");
             System.out.println("enter 1 to add stock ");
             System.out.println("enter 2 to check value of stock");
             System.out.println("enter 3 to check Portfolio ");
             System.out.println("enter 4 to check balance");
+            System.out.println("enter 5 to buy shares");
+            System.out.println("enter 6 to sell shares");
             System.out.println("************************************************");
             int check = sc.nextInt();
             if (check == 1){
@@ -88,6 +93,12 @@ public class Account {
                 account.totalStockValue();
             } else if (check == 4) {
                 account.balanceAmount();
+            } else if (check == 5) {
+                stockAccount.buy();
+            } else if (check == 7) {
+               stockAccount.addStockToIns();
+            } else if (check == 6) {
+                stockAccount.sell();
             }
         }
     }
