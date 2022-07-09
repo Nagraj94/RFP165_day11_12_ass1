@@ -37,6 +37,6 @@ public class Stock {
 
     @Override
     public String toString() {
-        return "\n\nstockName = "+ stockName + "\n\nnumShares = " + numShares + "\n\nsharePrice = " + sharePrice ;
+        return "\n\nstockName = "+ stockName +"\n\nnumShares = "+numShares+"\n\nsharePrice = "+sharePrice ;
     }
 }

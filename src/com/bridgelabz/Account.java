@@ -1,13 +1,15 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Account {
 
-    public static final int balanceAmount = 100000;
+    int balanceAmount = 100000;
+    int withdraw;
+    int currentBalance;
     static Scanner sc = new Scanner(System.in);
-
     ArrayList<Stock> list = new ArrayList<>();
 
     public void addStock(){
@@ -36,16 +38,35 @@ public class Account {
             }
         }
     }
-
-    public  void  totalStockValue(){
-        int numOfStock = list.size();
+    public void totalStockValue() {
+        int totalValue = 0;
         for (Stock stock : list) {
-            int sum =0;
-            for (int i = stock.getNumShares(); i < numOfStock; i++) {
-                sum += stock.getSharePrice();
-                System.out.println(sum);
+            int value = (stock.getNumShares() * stock.getSharePrice());
+            System.out.println(value);
+            //overall stock value
+               totalValue = totalValue + value;
+           }
+        System.out.println("Current value of overall stock "+totalValue);
+    }
+    public void balanceAmount(){
+        System.out.println("current balance "+balanceAmount);
+            System.out.println("enter 1 to withdraw amount");
+            System.out.println("enter any number key to exit ");
+            int check = sc.nextInt();
+            if(check == 1){
+                System.out.println("enter amount to withdraw");
+                withdraw = sc.nextInt();
+                if (withdraw < balanceAmount){
+                    int currentBalance = balanceAmount - withdraw;
+                    this.currentBalance = currentBalance;
+                    System.out.println("current balance is "+currentBalance+" amount debited with "+withdraw);
+                    balanceAmount = balanceAmount - withdraw;
+                }
+                else{
+                    System.out.println("entered amount is greater than account balance");
+                }
+
             }
-        }
     }
     public static void main(String[] args) {
         Account account = new Account();
@@ -53,7 +74,8 @@ public class Account {
             System.out.println("************************************************");
             System.out.println("enter 1 to add stock ");
             System.out.println("enter 2 to check value of stock");
-            System.out.println("enter 3 to check overall value of stock");
+            System.out.println("enter 3 to check Portfolio ");
+            System.out.println("enter 4 to check balance");
             System.out.println("************************************************");
             int check = sc.nextInt();
             if (check == 1){
@@ -62,8 +84,10 @@ public class Account {
                 account.calStockValue();
             } else if (check == 3) {
                 System.out.println(account.list);
+                System.out.println(" ");
                 account.totalStockValue();
-
+            } else if (check == 4) {
+                account.balanceAmount();
             }
         }
     }
